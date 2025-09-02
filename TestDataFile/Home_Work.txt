@@ -11,3 +11,5 @@ Edit Product from Cart:-
 Delete Product from cart :- 
 
 Add Multiple product into cart and verify total value = 2 product - 800 and 1200 and then delete only one product from cart and verify that only that item got deleted from cart
+
+do exercise as per assignment

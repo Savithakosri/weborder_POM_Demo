@@ -1,0 +1,103 @@
+@When("User click on Order Tab from the Home Page")
+public void user_click_on_order_tab_from_the_home_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User selects a value from product dropdown in order page")
+public void user_selects_a_value_from_product_dropdown_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters Customername in order Page")
+public void user_enters_customername_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters streetname in order page")
+public void user_enters_streetname_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters Street in order page")
+public void user_enters_street_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters City in order page")
+public void user_enters_city_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters State in order page")
+public void user_enters_state_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters Zip in order page")
+public void user_enters_zip_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User selects the Card Type radio button in Order page")
+public void user_selects_the_card_type_radio_button_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters Cardnumbers in order page")
+public void user_enters_cardnumbers_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User enters ExpDate in order page")
+public void user_enters_exp_date_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User Click on Process Button  in order page")
+public void user_click_on_process_button_in_order_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("Validate the order has been successfully created")
+public void validate_the_order_has_been_successfully_created() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("Click on Viewallorder Page")
+public void click_on_viewallorder_page() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("Validate order has been created in View all orders")
+public void validate_order_has_been_created_in_view_all_orders() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@When("User click on Login button")
+public void user_click_on_login_button() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+@Then("User should be in Home page and Logout button should display")
+public void user_should_be_in_home_page_and_logout_button_should_display() {
+    // Write code here that turns the phrase above into concrete actions
+   
+}
+
+

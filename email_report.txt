@@ -1,0 +1,111 @@
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.*;
+
+public class OutlookEmailUtil {
+
+    // Send email with attachment (test report)
+    public static void sendEmailWithReport(String fromEmail, String password,
+                                           String toEmail, String subject,
+                                           String body, String reportPath) {
+        try {
+            // Outlook SMTP configuration
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.office365.com");
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+
+            // Authenticate sender
+            Session session = Session.getInstance(props, new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, password);
+                }
+            });
+
+            // Create email message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject(subject);
+
+            // Create multipart (body + attachment)
+            Multipart multipart = new MimeMultipart();
+
+            // Email text body
+            MimeBodyPart textBodyPart = new MimeBodyPart();
+            textBodyPart.setText(body);
+            multipart.addBodyPart(textBodyPart);
+
+            // Attachment (test report)
+            if (reportPath != null && !reportPath.isEmpty()) {
+                MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                attachmentBodyPart.attachFile(reportPath);
+                multipart.addBodyPart(attachmentBodyPart);
+            }
+
+            message.setContent(multipart);
+
+            // Send email
+            Transport.send(message);
+
+            System.out.println("✅ Report sent successfully to " + toEmail);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("❌ Failed to send email");
+        }
+    }
+}
+How to Use:
+java
+Copy code
+public class SendReportTest {
+    public static void main(String[] args) {
+        String from = "your_outlook_email@outlook.com";
+        String password = "your_password"; // ⚠️ use App Password if MFA enabled
+        String to = "recipient@domain.com";
+        String subject = "Automation Test Report";
+        String body = "Hello Team,\n\nPlease find attached the latest automation test report.\n\nRegards,\nAutomation Team";
+        String reportPath = "C:/Reports/TestNG-Report.html";
+
+        OutlookEmailUtil.sendEmailWithReport(from, password, to, subject, body, reportPath);
+    }
+}
+⚠️ Important Notes:
+If your Outlook account has MFA enabled, you need to generate an App Password instead of using the normal password.
+
+Make sure you add the Jakarta Mail / JavaMail dependency in your project:
+
+Maven:
+
+xml
+Copy code
+<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>jakarta.mail</artifactId>
+    <version>2.0.1</version>
+</dependency>
+Outlook SMTP details:
+
+Host: smtp.office365.com
+
+Port: 587
+
+TLS required
+
+Do you also want me to extend this so it can send to multiple recipients + CC + BCC (for your test team), instead of just a single email?
+
+
+
+
+
+
+
+
+Ask ChatGPT
+
+
+
+
+

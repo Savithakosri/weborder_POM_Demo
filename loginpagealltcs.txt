@@ -1,0 +1,202 @@
+Feature: Login page feature
+Scenario Outline: Login page with multuple usernames
+
+
+#Scenario: Login with correct credentials
+Given user is on login page
+When user enters username and password from given sheetname "<SheetName>" and rownumber <RowNumber>
+Then user gets the Expected message from given sheetname "<SheetName>" and rownumber <RowNumber> should be displayed
+
+Examples:
+|SheetName|RowNumber|
+|login|0|
+|login|1|
+|login|2|
+
+**********************************************
+LoginPageSteps.java
+-------------------------
+package parallel;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+
+import com.pages.LoginPage;
+import com.qa.factory.DriverFactory;
+import com.qa.util.ExcelReader;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class LoginPageSteps {
+
+	private static String title;
+	//WebDriver driver =DriverFactory.getDriver();
+	private LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+
+	@Given("user is on login page")
+	public void user_is_on_login_page() {
+
+		DriverFactory.getDriver()
+				.get("http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Login.aspx");
+	}
+
+	@When("user gets the title of the page")
+	public void user_gets_the_title_of_the_page() {
+		title = loginPage.getLoginPageTitle();
+		System.out.println("Page title is: " + title);
+	}
+
+	@Then("page title should be {string}")
+	public void page_title_should_be(String expectedTitleName) {
+		Assert.assertTrue(title.contains(expectedTitleName));
+	}
+
+	@Then("forgot your password link should be displayed")
+	public void forgot_your_password_link_should_be_displayed() {
+		Assert.assertTrue(loginPage.isForgotPwdLinkExist());
+	}
+
+	@When("user enters username {string}")
+	public void user_enters_username(String username) {
+		loginPage.enterUserName(username);
+	}
+
+	@When("user enters password {string}")
+	public void user_enters_password(String password) {
+		loginPage.enterPassword(password);
+	}
+
+	@When("user clicks on Login button")
+	public void user_clicks_on_login_button() {
+		loginPage.clickOnLogin();
+	}
+	
+	
+	@When("user enters username and password from given sheetname {string} and rownumber {int}")
+	public void user_enters_username_from_given_sheetname_and_rownumber(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException {
+	    ExcelReader reader = new ExcelReader();
+	    List<Map<String, String>> testData = reader.getData("C:\\Cucumber_Advance_Topics-master\\src\\test\\resources\\TestData\\Login.xls", sheetName);
+	    
+	    // Ensure the rowNumber is within bounds
+	    if (rowNumber < 0 || rowNumber >= testData.size()) {
+	        throw new IllegalArgumentException("Row number is out of bounds.");
+	    }
+	    
+	    String username = testData.get(rowNumber).get("username");
+	    String password = testData.get(rowNumber).get("password");
+	    
+	    // Check if username or password is null
+	    if (username == null || password == null) {
+	        throw new IllegalArgumentException("Username or password is null. Please check the test data.");
+	    }
+
+	    System.out.println("Login with username: " + username + " and password: " + password);
+	    loginPage.doLogin(username, password);
+	}
+	
+	@Then("user gets the Expected message from given sheetname {string} and rownumber {int} should be displayed")
+	public void user_gets_the_expected_message_from_given_sheetname_and_rownumber_should_be_displayed(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException {
+		ExcelReader reader = new ExcelReader();
+	    List<Map<String, String>> testData = reader.getData("C:\\Cucumber_Advance_Topics-master\\src\\test\\resources\\TestData\\Login.xls", sheetName);
+	    
+	    // Ensure the rowNumber is within bounds
+	    if (rowNumber < 0 || rowNumber >= testData.size()) {
+	        throw new IllegalArgumentException("Row number is out of bounds.");
+	    }
+	    
+	    String expresult = testData.get(rowNumber).get("expresult");
+	    
+	 // Check if expresult is null
+	    if (expresult == null ) {
+	        throw new IllegalArgumentException("Expected Result is null. Please check the test data.");
+	    }
+	    
+	    loginPage.verifyLogin(expresult);
+	}
+
+
+
+}
+**********************************************
+LoginPage.java
+-----------------
+package com.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+
+public class LoginPage {
+
+	private WebDriver driver;
+
+	// 1. By Locators: OR
+	private By emailId = By.id("ctl00_MainContent_username");
+	private By password = By.id("ctl00_MainContent_password");
+	private By signInButton = By.id("ctl00_MainContent_login_button");
+	private By forgotPwdLink = By.linkText("Forgot your password?");
+
+	// 2. Constructor of the page class:
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	// 3. page actions: features(behavior) of the page the form of methods:
+
+	public String getLoginPageTitle() {
+		return driver.getTitle();
+	}
+
+	public boolean isForgotPwdLinkExist() {
+		return driver.findElement(forgotPwdLink).isDisplayed();
+	}
+
+	public void enterUserName(String username) {
+		driver.findElement(emailId).sendKeys(username);
+	}
+
+	public void enterPassword(String pwd) {
+		driver.findElement(password).sendKeys(pwd);
+	}
+
+	public void clickOnLogin() {
+		driver.findElement(signInButton).click();
+	}
+
+	public AccountsPage doLogin(String un, String pwd) {
+		System.out.println("login with: " + un + " and " + pwd);
+		driver.findElement(emailId).sendKeys(un);
+		driver.findElement(password).sendKeys(pwd);
+		driver.findElement(signInButton).click();
+		return new AccountsPage(driver);
+	}
+	
+	public void verifyLogin(String expresult) {
+		if(expresult.equalsIgnoreCase("Logout"))
+		{
+		String Act_Msg = driver.findElement(By.linkText("Logout")).getText();
+		Assert.assertEquals(Act_Msg, expresult);
+		driver.findElement(By.linkText("Logout")).click();
+		}
+		else
+		{
+			String Act_Error_Msg = driver.findElement(By.id("ctl00_MainContent_status")).getText();
+			Assert.assertEquals(Act_Error_Msg, expresult);
+		}
+	}
+	
+}
+
+TestData
+Login.xls
+username	password	expresult
+Tester	test	Logout
+Tester1	test	Invalid Login or Password.
+Tester	test1	Invalid Login or Password.

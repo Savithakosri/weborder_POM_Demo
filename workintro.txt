@@ -1,0 +1,58 @@
+Hi Team, 
+ 
+Acquisition - Review comments
+PI2 Project Status	Total No of Projects -  5
+
+How Many Project - 4 Completed
+
+How Many Project - 1 Hold
+CRA Usage	Limitation / Key Observation / Clarification
+
+EPIC / Capabilities Level- Template 
+
+Findings need to update in share point
+Model	Limitation / Key Observation / Clarification
+
+Maintain and Capture project wise - Model Name and Feature file
+In Sprint Automation	Avoiding Duplicate Efforts
+
+Eliminate parallel manual and automation efforts for the same test cases.
+
+Align automation planning with manual testing timelines to optimize effort.
+Feasibility Analysis
+
+Identify test cases that are feasible and valuable to automate early in the sprint.
+
+Prioritize high-impact, repeatable, and stable test scenarios.
+Timely Automation Development
+
+Develop automation scripts alongside ongoing development within the sprint.
+
+Ensure scripts are ready to be executed during the test execution phase.
+Maximizing Automation Coverage
+
+Aim to automate as many test cases as possible within the sprint timeframe.
+
+Focus on achieving meaningful automation that supports quick regression and improves test efficiency.
+IQP +  Defects	Updating - Run time data not updating - Test data
+Execution Saving	Progression Execution savings
+
+JIRA -Zephyr
+	Test Cases, Test Cycle, Test Report - Verify and Sign off
+Test Data Management	
+Key Observation
+
+Self-service  - Expire 3 days
+
+Clean up for test data and reuse
+
+Scenarios Creation	Jenkins Execution
+General Issues / Challenges	 
+Automation Test Result Signoff	Internal review - Scripts development and test results
+
+Gagan and Naga need to verify test results and  sign off 
+ 
+ 
+6/17 8:31 PM Meeting ended: 6s 
+
+ 

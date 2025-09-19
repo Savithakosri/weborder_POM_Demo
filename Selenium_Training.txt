@@ -1,0 +1,15 @@
+http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Login.aspx?ReturnUrl=%2fsamples%2fTestComplete11%2fWebOrders%2fDefault.aspx
+
+	Web Orders Login
+
+ C:\Selenium_Training
+
+//input[@name='ctl00$MainContent$fmwOrder$txtName' or @id='ctl00_MainContent_fmwOrder_txtName']  Any one
+
+//input[@name='ctl00$MainContent$fmwOrder$txtName' and @id='ctl00_MainContent_fmwOrder_txtName'] Both matches 
+
+https://testautomationpractice.blogspot.com/
+<suite name="TestSuite" thread-count="1" parallel="Classes">
+
+
+git remote add origin https://github.com/Savithakosri/weborder_POM_Demo.git

@@ -1,0 +1,11 @@
+And I check if "[Discoveryaddon]" present
+And I click on "[Discoveryaddon]" button
+And I add wait seconds of "2"
+And I take screenshot
+And "[addonprice]" should have partial text as "(Discovery)"
+And I add wait seconds of "2"
+And "[popupmsg]" should have partial text as "(Discoverypopupmessage)"
+And I add wait seconds of "2"
+And I click on "[continuetoadd]" button
+And I add wait seconds of "5"
+And I end conditional check

@@ -1,0 +1,36 @@
+com.webOrders.common
+
+	WebOrders_BasePage
+	WebOrders_BaseSetup
+
+com.webOrders.home
+	WebOrders_EditOrderPage
+	WebOrders_HomePage
+	WebOrders_OrdersPage
+	WebOrders_SignInPage
+	WebOrders_ViewAllOrdersPage
+	WebOrders_ViewAllProductsPage
+
+com.webOrders.test
+
+com.webOrders.utils
+com.webOrders.common
+
+	WebOrders_BasePage
+	WebOrders_BaseSetup
+
+com.webOrders.home
+	WebOrders_EditOrderPage
+	WebOrders_HomePage
+	WebOrders_OrdersPage
+	WebOrders_SignInPage
+	WebOrders_ViewAllOrdersPage
+	WebOrders_ViewAllProductsPage
+
+com.webOrders.test
+
+com.webOrders.utils
+	ExtentReportBase
+	Listeners
+	WebOrders_ExcelParsing
+	

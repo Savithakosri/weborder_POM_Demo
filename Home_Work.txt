@@ -1,0 +1,13 @@
+http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Process.aspx
+
+Compare_Price_from_ViewAllOrder_to_Order
+
+https://demowebshop.tricentis.com/
+
+Add Product to Cart :
+
+Edit Product from Cart:- 
+
+Delete Product from cart :- 
+
+Add Multiple product into cart and verify total value = 2 product - 800 and 1200 and then delete only one product from cart and verify that only that item got deleted from cart
